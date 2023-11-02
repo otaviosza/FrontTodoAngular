@@ -1,0 +1,33 @@
+<button type="button" (click)="mostrarFormularioAdicao = !mostrarFormularioAdicao">NovoDado</button>
+<button (click)="toggleTabelaVisibility()">Mostrar Todos</button>
+<form (ngSubmit)="adicionarNovoItem()" *ngIf="mostrarFormularioAdicao">
+    <input type="text" [(ngModel)]="novoItemNome" placeholder="Digite um novo item">
+    <button type="submit">Adicionar</button>
+</form>
+<table *ngIf="mostrarTabela">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todoList">
+        <td>{{ todo.TodolistaId }}</td>
+        <td>{{ todo.TodolistaNome }}</td>
+        <td>
+          <button (click)="editar(todo)">Editar</button>
+        </td>
+        <td>
+          <button (click)="remover(todo.TodolistaId)">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <form (ngSubmit)="salvarEdicao()" *ngIf="mostrarFormularioEdicao && itemEditandoId !== null">
+    <input type="text" [(ngModel)]="novoItemNome" placeholder="Digite um novo item">
+    <button type="submit">Atualizar</button>
+</form>
+
+  
